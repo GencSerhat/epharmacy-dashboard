@@ -2,7 +2,7 @@ import bcrypt from "bcryptjs";
 import User from "../models/User.js";
 import { signToken } from "../utils/jwt.js";
 
-export const login = async (req, resizeBy, next) => {
+export const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 

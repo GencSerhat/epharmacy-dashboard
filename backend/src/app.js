@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import morgan from "morgan";
+import userRoutes from "./routes/userRoutes.js";
 
 const app = express();
 
@@ -11,13 +12,13 @@ app.use(morgan("dev"));
 app.use(express.json());
 
 //Basit health-check route (sonra silinecek)
-app.get("/api/health",(req,res)=>{
-    res.json({status:"ok",message:"E-PhaRmacy Dashboard API is running"});
+app.get("/api/health", (req, res) => {
+  res.json({ status: "ok", message: "E-PhaRmacy Dashboard API is running" });
 });
 
+app.use("/api/user", userRoutes);
 //Bıraya ilerde routes eklenecek
 // örn: app.use("/api/user", authRouter);
 // örn: app.use("/api/dashboard", dashboardRouter);
-
 
 export default app;
