@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 import userRoutes from "./routes/userRoutes.js";
+import dashboardRoutes from "./routes/dashboardRoutes.js";
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.get("/api/health", (req, res) => {
 });
 
 app.use("/api/user", userRoutes);
+app.use("/api",dashboardRoutes);
 //Bıraya ilerde routes eklenecek
 // örn: app.use("/api/user", authRouter);
 // örn: app.use("/api/dashboard", dashboardRouter);
