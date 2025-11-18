@@ -3,16 +3,46 @@ import Order from "../models/Order.js";
 
 /**
  * GET /api/customers
- * Customers Data sayfası için müşteri listesi
+ * Query:
+ *  - name (opsiyonel, User Name filtresi)
+ *  - page (opsiyonel, default 1)
+ *  - limit (opsiyonel, default 10)
  */
 export const getCustomers = async (req, res, next) => {
   try {
-    // İleride name ile filtre ekleyebiliriz ama şimdilik tümünü döndürelim
-    const customers = await Customer.find()
-      .sort({ createdAt: -1 }) // en yeni üstte
-      .select("name email address phone country registerDate createdAt");
+    const { name, page = 1, limit = 10 } = req.query;
 
-    return res.json(customers);
+    const query = {};
+
+    // İsim filtresi (User Name)
+    if (name) {
+      // case-insensitive arama
+      query.name = { $regex: name, $options: "i" };
+    }
+
+    const pageNumber = Number(page) || 1;
+    const pageLimit = Number(limit) || 10;
+    const skip = (pageNumber - 1) * pageLimit;
+
+    // Toplam kayıt sayısı (sayfalama için)
+    const total = await Customer.countDocuments(query);
+
+    // Liste
+    const customers = await Customer.find(query)
+      .sort({ createdAt: -1 }) // en yeni üstte
+      .skip(skip)
+      .limit(pageLimit)
+      .select("name email address phone registerDate country createdAt");
+
+    return res.json({
+      data: customers,
+      pagination: {
+        total,
+        page: pageNumber,
+        limit: pageLimit,
+        totalPages: Math.ceil(total / pageLimit),
+      },
+    });
   } catch (error) {
     next(error);
   }
@@ -20,7 +50,7 @@ export const getCustomers = async (req, res, next) => {
 
 /**
  * GET /api/customers/:customerId
- * Tek müşteri detayı + sipariş/geçmiş bilgisi (Dashboard modal için)
+ * Tek müşteri + sipariş geçmişi
  */
 export const getCustomerById = async (req, res, next) => {
   try {
@@ -35,11 +65,12 @@ export const getCustomerById = async (req, res, next) => {
       return res.status(404).json({ message: "Customer not found" });
     }
 
-    // 2) Müşterinin sipariş / işlem geçmişi
-    // Order şemasında customer: ObjectId(field) olduğunu varsayıyoruz
-    const orders = await Order.find({ customer: customerId })
-      .sort({ createdAt: -1 })
-      .select("products price status createdAt");
+    // 2) Müşterinin sipariş geçmişi
+    // Order şemanda customer ref yok, customerEmail var.
+    // Bu yüzden email üzerinden eşleştiriyoruz.
+    const orders = await Order.find({ customerEmail: customer.email })
+      .sort({ orderDate: -1 }) // şemanda orderDate var
+      .select("products totalPrice status orderDate createdAt");
 
     // 3) Response
     return res.json({

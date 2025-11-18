@@ -3,7 +3,8 @@ import cors from "cors";
 import morgan from "morgan";
 import userRoutes from "./routes/userRoutes.js";
 import dashboardRoutes from "./routes/dashboardRoutes.js";
-
+import customersRoutes from "./routes/customersRoutes.js";
+import ordersRouter from "./routes/ordersRoutes.js";
 const app = express();
 
 //MiddlewARES
@@ -19,6 +20,9 @@ app.get("/api/health", (req, res) => {
 
 app.use("/api/user", userRoutes);
 app.use("/api",dashboardRoutes);
+app.use("/api/customers", customersRoutes);
+app.use("/api/orders", ordersRouter);
+
 //Bıraya ilerde routes eklenecek
 // örn: app.use("/api/user", authRouter);
 // örn: app.use("/api/dashboard", dashboardRouter);
