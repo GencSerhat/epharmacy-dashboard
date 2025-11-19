@@ -6,6 +6,7 @@ import dashboardRoutes from "./routes/dashboardRoutes.js";
 import customersRoutes from "./routes/customersRoutes.js";
 import ordersRouter from "./routes/ordersRoutes.js";
 import productsRouter from "./routes/productsRoutes.js";
+import suppliersRouter from "./routes/suppliersRoutes.js";
 
 
 const app = express();
@@ -26,6 +27,7 @@ app.use("/api",dashboardRoutes);
 app.use("/api/customers", customersRoutes);
 app.use("/api/orders", ordersRouter);
 app.use("/api/products", productsRouter);
+app.use("/api/suppliers", suppliersRouter);
 
 //Bıraya ilerde routes eklenecek
 // örn: app.use("/api/user", authRouter);
