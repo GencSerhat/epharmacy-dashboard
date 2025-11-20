@@ -1,33 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Routes, Route, Navigate } from "react-router-dom";
 
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+       <Routes>
+      {/* default olarak /login'e yönlendir */}
+      <Route path="/" element={<Navigate to="/login" replace />} />
+
+      {/* Login Page */}
+      <Route path="/login" element={<div>Login Page</div>} />
+
+      {/* Dashboard */}
+      <Route path="/dashboard" element={<div>Dashboard Page</div>} />
+
+      {/* Orders */}
+      <Route path="/orders" element={<div>All Orders Page</div>} />
+
+      {/* Products */}
+      <Route path="/products" element={<div>All Products Page</div>} />
+
+      {/* Suppliers */}
+      <Route path="/suppliers" element={<div>All Suppliers Page</div>} />
+
+      {/* Customers */}
+      <Route path="/customers" element={<div>Customers Data Page</div>} />
+
+      {/* eşleşmeyen her şey için fallback */}
+      <Route path="*" element={<Navigate to="/login" replace />} />
+    </Routes>
+  
     </>
   )
 }
