@@ -1,0 +1,77 @@
+/* src/components/LoginForm/LoginForm.module.css */
+
+.Form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.InputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.Label {
+  font-size: 12px;
+  color: #7b7c80;
+}
+
+.Input {
+  height: 44px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid #e7f7ed;
+  background-color: #ffffff;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.Input::placeholder {
+  color: #b1b3b7;
+}
+
+.Input:focus {
+  border-color: #59b17a;
+  box-shadow: 0 0 0 2px rgba(89, 177, 122, 0.15);
+}
+
+.InputError {
+  border-color: #eb5050;
+  box-shadow: 0 0 0 2px rgba(235, 80, 80, 0.15);
+}
+
+.ErrorText {
+  font-size: 11px;
+  color: #eb5050;
+}
+
+.SubmitButton {
+  margin-top: 12px;
+  height: 44px;
+  border-radius: 999px;
+  border: none;
+  background-color: #59b17a;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.1s ease;
+}
+
+.SubmitButton:hover:not(:disabled) {
+  background-color: #4aa26d;
+  box-shadow: 0 8px 20px rgba(89, 177, 122, 0.3);
+  transform: translateY(-1px);
+}
+
+.SubmitButton:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.SubmitButton:disabled {
+  opacity: 0.7;
+  cursor: default;
+}

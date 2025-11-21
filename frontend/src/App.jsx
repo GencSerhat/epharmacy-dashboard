@@ -1,38 +1,39 @@
+// src/App.jsx
 import { Routes, Route, Navigate } from "react-router-dom";
+import LoginPage from "./pages/LoginPage/LoginPage.jsx";
+import DashboardPage from "./pages/DashboardPage/DashboardPage.jsx";
+import SharedLayout from "./layouts/SharedLayout/SharedLayout.jsx";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute.jsx";
 
 function App() {
-
-
   return (
-    <>
-       <Routes>
-      {/* default olarak /login'e yönlendir */}
+    <Routes>
+      {/* Root'u login'e yönlendir */}
       <Route path="/" element={<Navigate to="/login" replace />} />
 
-      {/* Login Page */}
-      <Route path="/login" element={<div>Login Page</div>} />
+      {/* Public route */}
+      <Route path="/login" element={<LoginPage />} />
 
-      {/* Dashboard */}
-      <Route path="/dashboard" element={<div>Dashboard Page</div>} />
+      {/* Protected alan: SharedLayout içinde nested rotalar */}
+      <Route
+        path="/"
+        element={
+          <ProtectedRoute>
+            <SharedLayout />
+          </ProtectedRoute>
+        }
+      >
+        <Route path="dashboard" element={<DashboardPage />} />
+        <Route path="orders" element={<div>All Orders Page</div>} />
+        <Route path="products" element={<div>All Products Page</div>} />
+        <Route path="suppliers" element={<div>All Suppliers Page</div>} />
+        <Route path="customers" element={<div>Customers Data Page</div>} />
+      </Route>
 
-      {/* Orders */}
-      <Route path="/orders" element={<div>All Orders Page</div>} />
-
-      {/* Products */}
-      <Route path="/products" element={<div>All Products Page</div>} />
-
-      {/* Suppliers */}
-      <Route path="/suppliers" element={<div>All Suppliers Page</div>} />
-
-      {/* Customers */}
-      <Route path="/customers" element={<div>Customers Data Page</div>} />
-
-      {/* eşleşmeyen her şey için fallback */}
+      {/* Fallback */}
       <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
-  
-    </>
-  )
+  );
 }
 
-export default App
+export default App;

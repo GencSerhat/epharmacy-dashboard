@@ -1,0 +1,185 @@
+/* src/pages/LoginPage/LoginPage.module.css */
+
+.LoginPage {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-color: #f7f8fa; /* Figma'ya yakın açık gri */
+}
+
+.Container {
+  width: 100%;
+  max-width: 1440px;
+  padding: 32px 64px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Üst logo alanı */
+.Header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 64px;
+}
+
+.Logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.LogoIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background-color: #59b17a; /* ana yeşil */
+}
+
+.LogoText {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1d1e21;
+}
+
+/* Ana içerik */
+.Main {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  align-items: center;
+  gap: 40px;
+}
+
+/* Sol taraf: metin alanı */
+.Left {
+  max-width: 520px;
+}
+
+.Headline {
+  font-size: 32px;
+  line-height: 1.3;
+  font-weight: 600;
+  color: #1d1e21;
+}
+
+.Highlight {
+  color: #59b17a;
+}
+
+/* Sağ taraf: form kartı */
+.Right {
+  display: flex;
+  justify-content: center;
+}
+
+.FormCard {
+  width: 100%;
+  max-width: 360px;
+  padding: 32px 32px 40px;
+  border-radius: 24px;
+  background-color: #ffffff;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.03);
+}
+
+/* Form */
+.Form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.InputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.Label {
+  font-size: 12px;
+  color: #7b7c80;
+}
+
+.Input {
+  height: 44px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid #e7f7ed;
+  background-color: #ffffff;
+  font-size: 14px;
+  outline: none;
+}
+
+.Input::placeholder {
+  color: #b1b3b7;
+}
+
+.Input:focus {
+  border-color: #59b17a;
+  box-shadow: 0 0 0 2px rgba(89, 177, 122, 0.15);
+}
+
+/* Buton */
+.SubmitButton {
+  margin-top: 12px;
+  height: 44px;
+  border-radius: 999px;
+  border: none;
+  background-color: #59b17a;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.1s ease;
+}
+
+.SubmitButton:hover {
+  background-color: #4aa26d;
+  box-shadow: 0 8px 20px rgba(89, 177, 122, 0.3);
+  transform: translateY(-1px);
+}
+
+.SubmitButton:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .Main {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .Left {
+    max-width: 100%;
+  }
+
+  .Headline {
+    font-size: 28px;
+  }
+
+  .Container {
+    padding: 24px 24px 40px;
+  }
+}
+
+@media (max-width: 600px) {
+  .Header {
+    margin-bottom: 32px;
+  }
+
+  .Headline {
+    font-size: 24px;
+  }
+
+  .FormCard {
+    padding: 24px 20px 32px;
+  }
+}
+
+.ServerError {
+  margin-top: 12px;
+  font-size: 12px;
+  color: #eb5050;
+  text-align: center;
+}

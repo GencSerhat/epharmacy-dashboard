@@ -1,0 +1,72 @@
+/* src/layouts/SharedLayout/SharedLayout.module.css */
+
+.Layout {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 80px 1fr; /* solda dar sidebar, sağda içerik */
+  background-color: #f7f8fa;
+}
+
+/* Sidebar */
+.Sidebar {
+  background-color: #ffffff;
+  border-right: 1px solid #e4e6ea;
+}
+
+.SidebarInner {
+  height: 100%;
+  padding: 24px 16px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.SidebarPlaceholder {
+  font-size: 12px;
+  color: #7b7c80;
+}
+
+/* Sağ ana alan */
+.MainArea {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.Header {
+  padding: 24px 32px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e4e6ea;
+}
+
+.HeaderTitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1d1e21;
+  margin-bottom: 4px;
+}
+
+.HeaderSubtitle {
+  font-size: 12px;
+  color: #7b7c80;
+}
+
+/* İçerik */
+.Content {
+  padding: 24px 32px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .Layout {
+    grid-template-columns: 60px 1fr;
+  }
+
+  .Header {
+    padding: 16px 20px;
+  }
+
+  .Content {
+    padding: 16px 20px;
+  }
+}

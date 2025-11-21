@@ -1,0 +1,19 @@
+/* src/pages/DashboardPage/DashboardPage.module.css */
+
+.DashboardPage {
+  min-height: 100vh;
+  padding: 32px;
+  background-color: #f7f8fa; /* Login ile uyumlu açık gri */
+}
+
+.Title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1d1e21;
+  margin-bottom: 8px;
+}
+
+.Subtitle {
+  font-size: 14px;
+  color: #7b7c80;
+}
