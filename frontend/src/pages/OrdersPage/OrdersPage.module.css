@@ -1,0 +1,179 @@
+/* src/pages/OrdersPage/OrdersPage.module.css */
+
+.OrdersPage {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Filter bar */
+.FilterBar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.FilterInput {
+  max-width: 260px;
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid #dcdfe4;
+  font-size: 13px;
+  outline: none;
+}
+
+.FilterInput:focus {
+  border-color: #59b17a;
+  box-shadow: 0 0 0 2px rgba(89, 177, 122, 0.12);
+}
+
+.FilterButton {
+  padding: 10px 24px;
+  border-radius: 999px;
+  border: none;
+  background-color: #59b17a;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.12s ease, box-shadow 0.12s ease,
+    transform 0.08s ease;
+}
+
+.FilterButton:hover {
+  background-color: #4aa26c;
+  box-shadow: 0 8px 18px rgba(89, 177, 122, 0.35);
+  transform: translateY(-1px);
+}
+
+.FilterButton:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Tablo bloğu */
+.TableBlock {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 20px 24px;
+  border: 1px solid #e4e6ea;
+}
+
+.Title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1d1e21;
+  margin-bottom: 16px;
+}
+
+.Table {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.Row {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr 2fr 1fr 1.2fr;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f2f5;
+}
+
+.HeaderRow {
+  background-color: #f0f9f3;
+  font-weight: 500;
+  font-size: 12px;
+  color: #7b7c80;
+}
+
+.Row:last-child {
+  border-bottom: none;
+}
+
+.Cell {
+  padding: 0 8px;
+  font-size: 13px;
+  color: #1d1e21;
+  display: flex;
+  align-items: center;
+}
+
+.CellRight {
+  padding: 0 8px;
+  font-size: 13px;
+  color: #1d1e21;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.CellCenter {
+  padding: 0 8px;
+  font-size: 13px;
+  color: #1d1e21;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.EmptyRow {
+  padding: 16px 8px;
+  font-size: 13px;
+  color: #7b7c80;
+}
+
+/* Status badge'leri */
+.Status {
+  font-size: 11px;
+  border-radius: 999px;
+  padding: 4px 10px;
+  background-color: #f0f2f5;
+  color: #7b7c80;
+}
+
+.StatusCompleted {
+  background-color: #e7f7ed;
+  color: #59b17a;
+}
+
+.StatusConfirmed {
+  background-color: #ebe7ff;
+  color: #7b61ff;
+}
+
+.StatusPending {
+  background-color: #fff6e5;
+  color: #f0a500;
+}
+
+.StatusCancelled {
+  background-color: #ffe7e7;
+  color: #eb5050;
+}
+
+.StatusProcessing {
+  background-color: #e7f3ff;
+  color: #4c84ff;
+}
+
+@media (max-width: 1024px) {
+  .Row {
+    grid-template-columns: 2fr 2fr 0.8fr 1.6fr 1fr 1.2fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .OrdersPage {
+    gap: 16px;
+  }
+
+  .TableBlock {
+    padding: 16px 16px;
+  }
+
+  .Row {
+    grid-template-columns: 1.6fr 1.6fr 0.8fr 1.4fr 0.9fr 1.1fr;
+    font-size: 12px;
+  }
+}
