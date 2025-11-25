@@ -1,6 +1,7 @@
 // src/layouts/SharedLayout/SharedLayout.jsx
 import { Outlet } from "react-router-dom";
 import styles from "./SharedLayout.module.css";
+import Header from "../../components/Header/Header";
 
 function SharedLayout() {
   return (
@@ -15,11 +16,11 @@ function SharedLayout() {
 
       {/* Sağ taraf: header + içerik */}
       <div className={styles.MainArea}>
-        <header className={styles.Header}>
-          {/* Buraya bir sonraki adımlarda gerçek Header bileşenini koyacağız */}
-          <h1 className={styles.HeaderTitle}>Medicine store</h1>
+        <Header />
+        {/* Buraya bir sonraki adımlarda gerçek Header bileşenini koyacağız */}
+        {/* <h1 className={styles.HeaderTitle}>Medicine store</h1>
           <p className={styles.HeaderSubtitle}>Dashboard | vendor@gmail.com</p>
-        </header>
+         */}
 
         <main className={styles.Content}>
           {/* İç içe rotalar buradan render edilecek */}
