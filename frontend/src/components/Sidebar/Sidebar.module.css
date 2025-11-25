@@ -1,0 +1,87 @@
+/* src/components/Sidebar/Sidebar.module.css */
+
+.SidebarNav {
+  width: 100%;
+  height: 100%;
+  padding: 24px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Üstteki yuvarlak buton */
+.TopButton {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background-color: #59b17a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 18px;
+  margin-bottom: 24px;
+}
+
+.TopIcon {
+  line-height: 1;
+}
+
+/* Menü */
+.MenuList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.MenuItem {
+}
+
+.MenuLink {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  position: relative;
+  outline: none;
+}
+
+/* Pasif ikon */
+.IconCircle {
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  background-color: #e7f7ed;
+}
+
+/* Aktif menü: yeşil daire */
+.MenuLinkActive .IconCircle {
+  background-color: #59b17a;
+}
+
+/* Sadece ekran okuyucu için (label) */
+.SrOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Alt boşluk için biraz margin */
+.SidebarNav::after {
+  content: "";
+  display: block;
+  height: 24px;
+}

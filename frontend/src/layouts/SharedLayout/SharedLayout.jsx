@@ -2,6 +2,7 @@
 import { Outlet } from "react-router-dom";
 import styles from "./SharedLayout.module.css";
 import Header from "../../components/Header/Header";
+import Sidebar from "../../components/Sidebar/Sidebar";
 
 function SharedLayout() {
   return (
@@ -9,8 +10,7 @@ function SharedLayout() {
       {/* Sol taraf: sidebar alanı (şimdilik placeholder) */}
       <aside className={styles.Sidebar}>
         <div className={styles.SidebarInner}>
-          {/* Buraya bir sonraki adımlarda gerçek Sidebar bileşenini koyacağız */}
-          <p className={styles.SidebarPlaceholder}>Sidebar</p>
+          <Sidebar />
         </div>
       </aside>
 
