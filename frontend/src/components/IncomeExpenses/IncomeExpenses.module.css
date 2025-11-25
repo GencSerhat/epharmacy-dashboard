@@ -1,0 +1,96 @@
+/* src/components/IncomeExpenses/IncomeExpenses.module.css */
+
+.Block {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 20px 24px;
+  border: 1px solid #e4e6ea;
+}
+
+.Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 16px;
+}
+
+.Title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1d1e21;
+}
+
+.Subtitle {
+  font-size: 12px;
+  color: #7b7c80;
+}
+
+.List {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.Item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Badge'ler */
+.Badge {
+  font-size: 11px;
+  border-radius: 999px;
+  padding: 4px 10px;
+  background-color: #f0f2f5;
+  color: #7b7c80;
+}
+
+.BadgeIncome {
+  background-color: #e7f7ed;
+  color: #59b17a;
+}
+
+.BadgeExpense {
+  background-color: #ffe7e7;
+  color: #eb5050;
+}
+
+.BadgeError {
+  background-color: #f7f3ff;
+  color: #7b61ff;
+}
+
+.Description {
+  font-size: 13px;
+  color: #1d1e21;
+}
+
+/* Tutar */
+.Amount {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.AmountPositive {
+  color: #59b17a;
+}
+
+.AmountNegative {
+  color: #eb5050;
+}
+
+@media (max-width: 600px) {
+  .Item {
+    grid-template-columns: auto 1fr auto;
+    font-size: 12px;
+  }
+
+  .Description {
+    font-size: 12px;
+  }
+}

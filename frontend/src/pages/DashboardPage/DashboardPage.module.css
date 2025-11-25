@@ -1,19 +1,21 @@
 /* src/pages/DashboardPage/DashboardPage.module.css */
 
 .DashboardPage {
-  min-height: 100vh;
-  padding: 32px;
-  background-color: #f7f8fa; /* Login ile uyumlu açık gri */
+  min-height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
-.Title {
-  font-size: 24px;
-  font-weight: 600;
-  color: #1d1e21;
-  margin-bottom: 8px;
+/* Alt grid */
+.BottomGrid {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 24px;
 }
 
-.Subtitle {
-  font-size: 14px;
-  color: #7b7c80;
+@media (max-width: 1024px) {
+  .BottomGrid {
+    grid-template-columns: 1fr;
+  }
 }

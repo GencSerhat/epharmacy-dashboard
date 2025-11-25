@@ -1,0 +1,40 @@
+/* src/components/DashboardStatistics/DashboardStatistics.module.css */
+
+.Statistics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.Card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 16px 20px;
+  border: 1px solid #e4e6ea;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.CardActive {
+  border-color: #59b17a;
+  box-shadow: 0 12px 25px rgba(89, 177, 122, 0.15);
+}
+
+.Label {
+  font-size: 12px;
+  color: #7b7c80;
+}
+
+.Value {
+  font-size: 24px;
+  font-weight: 600;
+  color: #1d1e21;
+}
+
+@media (max-width: 900px) {
+  .Statistics {
+    grid-template-columns: 1fr;
+  }
+}
