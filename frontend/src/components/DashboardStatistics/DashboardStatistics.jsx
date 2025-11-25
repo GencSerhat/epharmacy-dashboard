@@ -1,12 +1,15 @@
 // src/components/DashboardStatistics/DashboardStatistics.jsx
 import styles from "./DashboardStatistics.module.css";
 
-function DashboardStatistics() {
-  // Şimdilik dummy veriler, sonra backend'ten gelecek
+function DashboardStatistics({
+  totalProducts = 0,
+  totalSuppliers = 0,
+  totalCustomers = 0,
+}) {
   const items = [
-    { id: "products", label: "All products", value: "8,430", active: true },
-    { id: "suppliers", label: "All suppliers", value: "211", active: false },
-    { id: "customers", label: "All customers", value: "140", active: false },
+    { id: "products", label: "All products", value: totalProducts, active: true },
+    { id: "suppliers", label: "All suppliers", value: totalSuppliers, active: false },
+    { id: "customers", label: "All customers", value: totalCustomers, active: false },
   ];
 
   return (

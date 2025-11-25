@@ -1,27 +1,7 @@
 // src/components/IncomeExpenses/IncomeExpenses.jsx
 import styles from "./IncomeExpenses.module.css";
 
-function IncomeExpenses() {
-  // Şimdilik static liste; sonra backend'e bağlayacağız
-  const items = [
-    { id: 1, type: "Expense", title: "Qonto billing", amount: -49.88 },
-    {
-      id: 2,
-      type: "Income",
-      title: "Cruip.com Market Ltd 70 Wilson St London",
-      amount: 249.88,
-    },
-    { id: 3, type: "Income", title: "Notion Labs Inc", amount: 99.99 },
-    { id: 4, type: "Income", title: "Market Cap Ltd", amount: 1200.88 },
-    {
-      id: 5,
-      type: "Error",
-      title: "App.com Market Ltd 70 Wilson St London",
-      amount: 99.99,
-    },
-    { id: 6, type: "Expense", title: "App.com Market Ltd 70 Wilson St London", amount: -49.88 },
-  ];
-
+function IncomeExpenses({ items = [] }) {
   const getBadgeClass = (type) => {
     if (type === "Income") return `${styles.Badge} ${styles.BadgeIncome}`;
     if (type === "Expense") return `${styles.Badge} ${styles.BadgeExpense}`;
@@ -29,12 +9,14 @@ function IncomeExpenses() {
     return styles.Badge;
   };
 
-  const formatAmount = (value) =>
-    `${value > 0 ? "+" : ""}${value.toFixed(2)}`;
+  const formatAmount = (value) => {
+    const num = Number(value) || 0;
+    return `${num > 0 ? "+" : ""}${num.toFixed(2)}`;
+  };
 
   const getAmountClass = (value) =>
     `${styles.Amount} ${
-      value > 0 ? styles.AmountPositive : styles.AmountNegative
+      Number(value) > 0 ? styles.AmountPositive : styles.AmountNegative
     }`;
 
   return (
@@ -46,9 +28,11 @@ function IncomeExpenses() {
 
       <ul className={styles.List}>
         {items.map((item) => (
-          <li key={item.id} className={styles.Item}>
+          <li key={item.id || item._id} className={styles.Item}>
             <span className={getBadgeClass(item.type)}>{item.type}</span>
-            <span className={styles.Description}>{item.title}</span>
+            <span className={styles.Description}>
+              {item.title || item.description}
+            </span>
             <span className={getAmountClass(item.amount)}>
               {formatAmount(item.amount)}
             </span>
