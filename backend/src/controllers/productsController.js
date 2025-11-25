@@ -28,42 +28,51 @@ export const getProducts = async (req, res, next) => {
     } = req.query;
 
     const filters = {};
-    //arama: ürün adı (name alanında)
 
+    // Arama: ürün adı (name alanında)
     if (search) {
       filters.name = { $regex: search, $options: "i" };
     }
-    //Kategori filtresi
+
+    // Kategori filtresi
     if (category) {
       filters.category = category;
     }
-    //Fiyat aralığı
+
+    // Fiyat aralığı
     if (minPrice || maxPrice) {
       filters.price = {};
       if (minPrice) {
         filters.price.$gte = Number(minPrice);
       }
+      if (maxPrice) {
+        filters.price.$lte = Number(maxPrice);
+      }
     }
 
-    //Sayfalama
+    // Sayfalama
     const pageNumber = Number(page) || 1;
     const pageLimit = Number(limit) || 10;
     const skip = (pageNumber - 1) * pageLimit;
 
-    //Sıralama
+    // Sıralama
     const sortOptions = {};
     const sortField = sortBy || "createdAt";
     const sortOrder = order === "asc" ? 1 : -1;
     sortOptions[sortField] = sortOrder;
 
-    //Toplam kayıt sayısı
-    const total = await Product.countDocuments(filters)
-      .sort(sortOptions)
-      .skip(skip)
-      .limit(pageLimit);
+    // 🔹 Ürünler + toplam sayıyı birlikte çek
+    const [items, total] = await Promise.all([
+      Product.find(filters)
+        .sort(sortOptions)
+        .skip(skip)
+        .limit(pageLimit),
+      Product.countDocuments(filters),
+    ]);
 
+    // 🔹 Artık gerçekten ürün listesini döndürüyoruz
     return res.json({
-      data: getProducts,
+      data: items,
       pagination: {
         total,
         page: pageNumber,

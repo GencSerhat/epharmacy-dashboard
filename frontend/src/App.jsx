@@ -5,6 +5,7 @@ import DashboardPage from "./pages/DashboardPage/DashboardPage.jsx";
 import SharedLayout from "./layouts/SharedLayout/SharedLayout.jsx";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute.jsx";
 import OrdersPage from "./pages/OrdersPage/OrdersPage.JSX";
+import ProductsPage from "./pages/ProductsPage/ProductsPage.jsx";
 function App() {
   return (
     <Routes>
@@ -25,7 +26,7 @@ function App() {
       >
         <Route path="dashboard" element={<DashboardPage />} />
         <Route path="orders" element={<OrdersPage />} />
-        <Route path="products" element={<div>All Products Page</div>} />
+        <Route path="products" element={<ProductsPage />} />
         <Route path="suppliers" element={<div>All Suppliers Page</div>} />
         <Route path="customers" element={<div>Customers Data Page</div>} />
       </Route>
