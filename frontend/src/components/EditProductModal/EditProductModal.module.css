@@ -1,0 +1,132 @@
+/* src/components/EditProductModal/EditProductModal.module.css */
+
+.Backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.Modal {
+  position: relative;
+  width: 520px;
+  max-width: 90%;
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 32px 32px 24px;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.15);
+}
+
+.Title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1d1e21;
+  margin: 0 0 20px;
+}
+
+.CloseBtn {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  color: #9ca3af;
+}
+
+.Form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* LABEL & INPUT */
+
+.Label {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  font-weight: 500;
+  color: #6b7280;
+  gap: 4px;
+}
+
+.Input {
+  height: 40px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  outline: none;
+  font-size: 14px;
+  color: #1f2933;
+  background-color: #ffffff;
+}
+
+.Input:focus {
+  border-color: #59b87a;
+  box-shadow: 0 0 0 1px #59b87a20;
+}
+
+/* HATA MESAJI */
+
+.Error {
+  margin-top: 2px;
+  font-size: 11px;
+  color: #eb5050;
+}
+
+/* BUTONLAR */
+
+.Actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.SaveButton {
+  min-width: 96px;
+  height: 40px;
+  border-radius: 999px;
+  border: none;
+  background-color: #59b87a; /* figmadaki yeşile yakın */
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.SaveButton:hover {
+  background-color: #4ba66b;
+}
+
+.CancelButton {
+  min-width: 96px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  background-color: #ffffff;
+  color: #4b5563;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.CancelButton:hover {
+  background-color: #f3f4f6;
+}
+
+/* Küçük ekran uyumu */
+
+@media (max-width: 480px) {
+  .Modal {
+    padding: 24px 20px 20px;
+    width: 100%;
+    margin: 0 12px;
+  }
+}

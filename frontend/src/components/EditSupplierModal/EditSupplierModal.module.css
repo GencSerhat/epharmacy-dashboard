@@ -1,0 +1,172 @@
+.Backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.Modal {
+  width: 640px;
+  max-width: calc(100% - 32px);
+  background: #0e1628;
+  border-radius: 16px;
+  padding: 24px 24px 20px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  color: #f9fafb;
+  font-family: inherit;
+}
+
+.Header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.Title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #e5e7eb;
+}
+
+.CloseBtn {
+  border: none;
+  background: transparent;
+  color: #9ca3af;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 999px;
+  transition: background 150ms ease, color 150ms ease;
+}
+
+.CloseBtn:hover {
+  background: rgba(148, 163, 184, 0.2);
+  color: #f9fafb;
+}
+
+.Form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.Row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 640px) {
+  .Row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.Field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.Label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #9ca3af;
+}
+
+.Input,
+.Select {
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  background: #020617;
+  color: #f9fafb;
+  font-size: 14px;
+  padding: 0 12px;
+  outline: none;
+  transition: border-color 150ms ease, box-shadow 150ms ease,
+    background 150ms ease;
+}
+
+.Input::placeholder {
+  color: #6b7280;
+}
+
+.Input:focus,
+.Select:focus {
+  border-color: #fb923c;
+  box-shadow: 0 0 0 1px rgba(251, 146, 60, 0.5);
+  background: #020617;
+}
+
+.SelectWrapper {
+  position: relative;
+}
+
+.Select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.Error {
+  font-size: 12px;
+  color: #f97373;
+}
+
+.Actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.SaveBtn,
+.CancelBtn {
+  min-width: 96px;
+  height: 38px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background 150ms ease, color 150ms ease, opacity 120ms ease,
+    transform 80ms ease;
+}
+
+/* Primary (Save) */
+.SaveBtn {
+  background: linear-gradient(135deg, #f97316, #ea580c);
+  color: #ffffff;
+}
+
+.SaveBtn:hover {
+  transform: translateY(-1px);
+  background: linear-gradient(135deg, #ea580c, #c2410c);
+}
+
+/* Secondary (Cancel) */
+.CancelBtn {
+  background: #020617;
+  color: #e5e7eb;
+  border: 1px solid rgba(148, 163, 184, 0.55);
+}
+
+.CancelBtn:hover {
+  background: rgba(15, 23, 42, 0.9);
+}
+
+.SaveBtn:disabled,
+.CancelBtn:disabled,
+.CloseBtn:disabled {
+  opacity: 0.6;
+  cursor: default;
+  transform: none;
+}

@@ -1,0 +1,97 @@
+.SuppliersPage {
+  padding: 24px;
+}
+
+/* FILTER BAR */
+.FilterBar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.FilterInput {
+  flex: 1;
+  height: 40px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+}
+
+.FilterButton {
+  height: 40px;
+  padding: 0 20px;
+  background-color: #59b87a;
+  color: white;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.AddButton {
+  height: 40px;
+  padding: 0 20px;
+  background-color: #1f2937;
+  color: white;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+/* TABLE */
+.TableBlock {}
+
+.Title {
+  margin-bottom: 16px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.Table {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+}
+
+.Row {
+  display: grid;
+  grid-template-columns: 1.5fr 1.5fr 1fr 1fr 1fr 1fr 1fr;
+  padding: 12px 16px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.HeaderRow {
+  background-color: #f9fafb;
+  font-weight: 600;
+}
+
+.Cell {
+  display: flex;
+  align-items: center;
+}
+
+.CellCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.EmptyRow {
+  text-align: center;
+  padding: 20px;
+  color: #6b7280;
+}
+
+.ActionButton {
+  padding: 6px 16px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  background-color: #ffffff;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.ActionButton:hover {
+  background-color: #f3f4f6;
+}

@@ -1,160 +1,155 @@
 // src/pages/ProductsPage/ProductsPage.jsx
+
 import { useEffect, useState } from "react";
 import styles from "./ProductsPage.module.css";
+
+// Services
 import {
   fetchProducts,
   createProduct,
+  updateProduct,
+  deleteProduct,
 } from "../../services/productsService.js";
+
+// Modals
 import AddProductModal from "../../components/AddProductModal/AddProductModal.jsx";
+import EditProductModal from "../../components/EditProductModal/EditProductModal.jsx";
 
 function ProductsPage() {
   const [filter, setFilter] = useState("");
   const [searchName, setSearchName] = useState("");
+
   const [products, setProducts] = useState([]);
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  // Modals
+  const [isAddOpen, setIsAddOpen] = useState(false);
+  const [isEditOpen, setIsEditOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
-  // API'den ürünleri çek
+  // --------------------
+  // Fetch Products
+  // --------------------
+  const loadProducts = async () => {
+    try {
+      setLoading(true);
+      setError("");
+
+      const data = await fetchProducts({
+        search: searchName || undefined,
+        page: 1,
+        limit: 50,
+      });
+
+      const arr = Array.isArray(data?.data) ? data.data : [];
+      setProducts(arr);
+    } catch (err) {
+      console.error("Products load error:", err);
+      setError(
+        err?.response?.data?.message ||
+          "Ürünler yüklenirken bir hata oluştu."
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // İlk yükleme + filtre
   useEffect(() => {
-    const loadProducts = async () => {
-      try {
-        setLoading(true);
-        setError("");
-
-        const data = await fetchProducts({
-          name: searchName || undefined,
-          page: 1,
-          limit: 20,
-        });
-
-        console.log("ProductsPage API response:", data);
-
-        let apiProducts = [];
-
-        if (Array.isArray(data)) {
-          apiProducts = data;
-        } else if (Array.isArray(data?.data)) {
-          apiProducts = data.data;
-        } else if (Array.isArray(data?.products)) {
-          apiProducts = data.products;
-        } else if (Array.isArray(data?.items)) {
-          apiProducts = data.items;
-        } else if (Array.isArray(data?.results)) {
-          apiProducts = data.results;
-        } else {
-          apiProducts = [];
-        }
-
-        setProducts(apiProducts);
-      } catch (err) {
-        console.error("Products load error:", err);
-        const message =
-          err?.response?.data?.message ||
-          "Products verileri yüklenirken bir hata oluştu.";
-        setError(message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     loadProducts();
   }, [searchName]);
 
-  // Filter butonu → backend'e name ile istek gitsin
+  // --------------------
+  // Filter button
+  // --------------------
   const handleFilterClick = () => {
     setSearchName(filter.trim());
   };
 
-  // Add modalını aç
-  const openAddModal = () => {
-    setIsAddModalOpen(true);
-  };
-
-  const closeAddModal = () => {
-    if (!isSubmitting) {
-      setIsAddModalOpen(false);
-    }
-  };
-
-  // Yeni ürün ekleme submit
-  const handleAddProduct = async (payload) => {
+  // --------------------
+  // Add new product
+  // --------------------
+  const handleAddProduct = async (formData) => {
     try {
-      setIsSubmitting(true);
-      setError("");
-
-      await createProduct(payload);
-
-      // Başarılı olursa tekrar liste çek
-      const data = await fetchProducts({
-        name: searchName || undefined,
-        page: 1,
-        limit: 20,
-      });
-
-      let apiProducts = [];
-
-      if (Array.isArray(data)) {
-        apiProducts = data;
-      } else if (Array.isArray(data?.data)) {
-        apiProducts = data.data;
-      } else if (Array.isArray(data?.products)) {
-        apiProducts = data.products;
-      } else if (Array.isArray(data?.items)) {
-        apiProducts = data.items;
-      } else if (Array.isArray(data?.results)) {
-        apiProducts = data.results;
-      } else {
-        apiProducts = [];
-      }
-
-      setProducts(apiProducts);
-      setIsAddModalOpen(false);
+      await createProduct(formData);
+      await loadProducts(); // listeyi yenile
+      setIsAddOpen(false); // modal kapat
     } catch (err) {
-      console.error("Create product error:", err);
-      const message =
-        err?.response?.data?.message || "Product eklenirken bir hata oluştu.";
-      setError(message);
-    } finally {
-      setIsSubmitting(false);
+      console.error("Add product error:", err);
     }
   };
 
-  const safeProducts = Array.isArray(products) ? products : [];
+  // --------------------
+  // Edit Modal Açma
+  // --------------------
+  const openEditModal = (product) => {
+    setSelectedProduct(product);
+    setIsEditOpen(true);
+  };
 
+  // --------------------
+  // Ürün Güncelleme
+  // --------------------
+  const handleSaveEdit = async (updatedData) => {
+    try {
+      const id = updatedData.id;
+
+      await updateProduct(id, updatedData);
+      await loadProducts(); // listeyi yenile
+
+      setIsEditOpen(false);
+      setSelectedProduct(null);
+    } catch (err) {
+      console.error("Edit product error:", err);
+    }
+  };
+
+  // --------------------
+  // Ürün Silme
+  // --------------------
+  const handleDelete = async (id) => {
+    if (!window.confirm("Bu ürünü silmek istediğinize emin misiniz?")) return;
+
+    try {
+      await deleteProduct(id);
+      await loadProducts();
+    } catch (err) {
+      console.error("Delete product error:", err);
+    }
+  };
+
+  // --------------------
+  // JSX
+  // --------------------
   return (
     <div className={styles.ProductsPage}>
-      {/* Filter bar + Add button */}
-      <div className={styles.TopBar}>
-        <div className={styles.FilterBar}>
-          <input
-            type="text"
-            placeholder="Product Name"
-            className={styles.FilterInput}
-            value={filter}
-            onChange={(e) => setFilter(e.target.value)}
-          />
-          <button className={styles.FilterButton} onClick={handleFilterClick}>
-            Filter
-          </button>
-        </div>
-
+      {/* Filter Bar */}
+      <div className={styles.FilterBar}>
+        <input
+          type="text"
+          placeholder="Product Name"
+          className={styles.FilterInput}
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+        />
+        <button className={styles.FilterButton} onClick={handleFilterClick}>
+          Filter
+        </button>
         <button
           className={styles.AddButton}
-          type="button"
-          onClick={openAddModal}
+          onClick={() => setIsAddOpen(true)}
         >
           + Add a new product
         </button>
       </div>
 
-      {/* Hata / Loading mesajları */}
+      {/* Error & Loading */}
       {loading && <p>Loading products...</p>}
       {error && <p style={{ color: "#eb5050", fontSize: 13 }}>{error}</p>}
 
-      {/* Tablo */}
+      {/* Table */}
       {!loading && !error && (
         <section className={styles.TableBlock}>
           <h2 className={styles.Title}>All products</h2>
@@ -169,35 +164,25 @@ function ProductsPage() {
               <div className={styles.CellCenter}>Action</div>
             </div>
 
-            {safeProducts.map((product) => (
-              <div key={product.id || product._id} className={styles.Row}>
-                <div className={styles.Cell}>
-                  {product.name || product.productName || "—"}
-                </div>
-                <div className={styles.Cell}>
-                  {product.category || product.categoryName || "—"}
-                </div>
-                <div className={styles.CellCenter}>
-                  {product.stock ?? product.quantity ?? 0}
-                </div>
-                <div className={styles.Cell}>
-                  {product.suppliers || product.supplierName || "—"}
-                </div>
-                <div className={styles.CellRight}>
-                  {(product.price ?? product.amount ?? 0).toFixed
-                    ? (product.price ?? product.amount ?? 0).toFixed(2)
-                    : Number(product.price ?? product.amount ?? 0).toFixed(2)}
-                </div>
+            {products.map((p) => (
+              <div key={p._id} className={styles.Row}>
+                <div className={styles.Cell}>{p.name}</div>
+                <div className={styles.Cell}>{p.category}</div>
+                <div className={styles.CellCenter}>{p.stock ?? 0}</div>
+                <div className={styles.Cell}>{p.supplier || p.suppliers}</div>
+                <div className={styles.CellRight}>${p.price}</div>
+
                 <div className={styles.CellCenter}>
                   <button
-                    className={`${styles.ActionButton} ${styles.EditButton}`}
-                    type="button"
+                    className={styles.EditBtn}
+                    onClick={() => openEditModal(p)}
                   >
                     Edit
                   </button>
+
                   <button
-                    className={`${styles.ActionButton} ${styles.DeleteButton}`}
-                    type="button"
+                    className={styles.DeleteBtn}
+                    onClick={() => handleDelete(p._id)}
                   >
                     Delete
                   </button>
@@ -205,19 +190,26 @@ function ProductsPage() {
               </div>
             ))}
 
-            {safeProducts.length === 0 && (
+            {products.length === 0 && (
               <div className={styles.EmptyRow}>No products found.</div>
             )}
           </div>
         </section>
       )}
 
-      {/* Add product modal */}
+      {/* Add Product Modal */}
       <AddProductModal
-        isOpen={isAddModalOpen}
-        onClose={closeAddModal}
+        isOpen={isAddOpen}
+        onClose={() => setIsAddOpen(false)}
         onSubmit={handleAddProduct}
-        isSubmitting={isSubmitting}
+      />
+
+      {/* Edit Product Modal */}
+      <EditProductModal
+        isOpen={isEditOpen}
+        onClose={() => setIsEditOpen(false)}
+        product={selectedProduct}
+        onSave={handleSaveEdit}
       />
     </div>
   );
