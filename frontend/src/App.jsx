@@ -7,6 +7,7 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute.jsx";
 import OrdersPage from "./pages/OrdersPage/OrdersPage.JSX";
 import ProductsPage from "./pages/ProductsPage/ProductsPage.jsx";
 import SuppliersPage from "./pages/SuppliersPage/SuppliersPage.jsx";
+import CustomersPage from "./pages/CustomersPage/CustomersPage.jsx";
 function App() {
   return (
     <Routes>
@@ -30,7 +31,7 @@ function App() {
         <Route path="products" element={<ProductsPage />} />
         <Route path="suppliers" element={<SuppliersPage />} />
 
-        <Route path="customers" element={<div>Customers Data Page</div>} />
+       <Route path="customers" element={<CustomersPage />} />
       </Route>
 
       {/* Fallback */}
