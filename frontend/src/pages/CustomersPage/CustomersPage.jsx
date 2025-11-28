@@ -133,8 +133,7 @@ function CustomersPage() {
     } catch (err) {
       console.error("Delete customer error:", err);
       const message =
-        err?.response?.data?.message ||
-        "Müşteri silinirken bir hata oluştu.";
+        err?.response?.data?.message || "Müşteri silinirken bir hata oluştu.";
       setError(message);
     } finally {
       setDeletingId(null);
@@ -148,17 +147,13 @@ function CustomersPage() {
     customer.user?.name ||
     "—";
 
-  const getEmail = (customer) =>
-    customer.email || customer.user?.email || "—";
+  const getEmail = (customer) => customer.email || customer.user?.email || "—";
 
   const getAddress = (customer) =>
     customer.address || customer.user?.address || "—";
 
   const getPhone = (customer) =>
-    customer.phone ||
-    customer.phoneNumber ||
-    customer.user?.phone ||
-    "—";
+    customer.phone || customer.phoneNumber || customer.user?.phone || "—";
 
   const formatDate = (value) => {
     if (!value) return "—";
