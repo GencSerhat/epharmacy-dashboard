@@ -81,10 +81,7 @@ export const getSuppliers = async (req, res, next) => {
   }
 };
 
-/**
- * POST /api/suppliers
- * Yeni tedarikçi ekleme
- */
+
 export const createSupplier = async (req, res, next) => {
   try {
     const { name, address, company, deliveryDate, amount, status } = req.body;
@@ -103,7 +100,7 @@ export const createSupplier = async (req, res, next) => {
       company,
       deliveryDate,
       amount,
-      status, // gelmezse model default "pending" verecek
+      status, 
     });
 
     return res.status(201).json({

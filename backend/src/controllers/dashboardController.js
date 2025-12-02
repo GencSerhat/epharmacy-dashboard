@@ -27,7 +27,7 @@ export const getDashboard = async (req, res, next) => {
       .select("name email registerDate country");
 
 
-    // Gelir / gider listesi (ör: son 20 işlem)
+    // Gelir / gider listesi
     const transactions = await Transaction.find({
       createdAt: { $gte: thirtyDaysAgo },
     })
@@ -50,14 +50,3 @@ export const getDashboard = async (req, res, next) => {
 };
 
 
-// stats objesi → dashboard’un en üstündeki üç kutu için:
-
-// allProducts
-
-// allSuppliers
-
-// allCustomers
-
-// recentCustomers → “Recent Customers” tablosu (son 30 günde eklenen son 5 müşteri)
-
-// transactions → “Income / Expenses” tablosu (son 30 günde oluşan son 20 işlem)

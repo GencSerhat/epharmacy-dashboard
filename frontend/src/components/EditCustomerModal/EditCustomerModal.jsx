@@ -1,9 +1,15 @@
-import { useState } from "react";
-import styles from "./AddCustomerModal.module.css";
-import { createCustomer } from "../../services/customersService";
+// src/components/EditCustomerModal/EditCustomerModal.jsx
+import { useEffect, useState } from "react";
+import styles from "./EditCustomerModal.module.css";
+import { updateCustomer } from "../../services/customersService";
 
-const AddCustomerModal = ({ isOpen, onClose, onCustomerAdded }) => {
-  if (!isOpen) return null;
+const EditCustomerModal = ({
+  isOpen,
+  onClose,
+  customer,
+  onCustomerUpdated,
+}) => {
+  if (!isOpen || !customer) return null;
 
   const [formData, setFormData] = useState({
     name: "",
@@ -14,6 +20,27 @@ const AddCustomerModal = ({ isOpen, onClose, onCustomerAdded }) => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+
+  // Modal her açıldığında seçili müşteriyi forma doldur
+  useEffect(() => {
+    if (customer) {
+      setFormData({
+        name:
+          customer.name ||
+          customer.userName ||
+          customer.fullName ||
+          customer.user?.name ||
+          "",
+        email: customer.email || customer.user?.email || "",
+        phone:
+          customer.phone ||
+          customer.phoneNumber ||
+          customer.user?.phone ||
+          "",
+        address: customer.address || customer.user?.address || "",
+      });
+    }
+  }, [customer]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -30,26 +57,18 @@ const AddCustomerModal = ({ isOpen, onClose, onCustomerAdded }) => {
     setErrorMessage("");
 
     try {
-      const newCustomer = await createCustomer(formData);
+      const customerId = customer._id || customer.id;
+      const updatedCustomer = await updateCustomer(customerId, formData);
 
-      if (onCustomerAdded) {
-        onCustomerAdded(newCustomer);
+      if (onCustomerUpdated) {
+        onCustomerUpdated(updatedCustomer);
       }
-
-      // Formu temizle
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        address: "",
-      });
 
       onClose();
     } catch (error) {
-       console.error("Create customer error:", error); // 🔴 BUNU EKLEDİK
       const message =
         error?.response?.data?.message ||
-        "Müşteri eklenirken bir hata oluştu. Lütfen tekrar deneyin.";
+        "Müşteri güncellenirken bir hata oluştu. Lütfen tekrar deneyin.";
       setErrorMessage(message);
     } finally {
       setIsSubmitting(false);
@@ -60,7 +79,7 @@ const AddCustomerModal = ({ isOpen, onClose, onCustomerAdded }) => {
     <div className={styles.ModalOverlay}>
       <div className={styles.ModalContent}>
         <div className={styles.ModalHeader}>
-          <h2>Yeni Müşteri Ekle</h2>
+          <h2>Müşteri Düzenle</h2>
           <button
             type="button"
             className={styles.CloseButton}
@@ -150,7 +169,7 @@ const AddCustomerModal = ({ isOpen, onClose, onCustomerAdded }) => {
               className={styles.SaveButton}
               disabled={isSubmitting}
             >
-              {isSubmitting ? "Kaydediliyor..." : "Kaydet"}
+              {isSubmitting ? "Güncelleniyor..." : "Güncelle"}
             </button>
           </div>
         </form>
@@ -159,4 +178,4 @@ const AddCustomerModal = ({ isOpen, onClose, onCustomerAdded }) => {
   );
 };
 
-export default AddCustomerModal;
+export default EditCustomerModal;

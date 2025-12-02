@@ -29,7 +29,7 @@ const productSchema = new mongoose.Schema(
       default: 0,
     },
     suppliers: {
-      type: [String], // basit tutuyoruz: isim listesi
+      type: [String], 
       default: [],
     },
     price: {
@@ -39,7 +39,7 @@ const productSchema = new mongoose.Schema(
     },
   },
   {
-    timestamps: true, // createdAt, updatedAt
+    timestamps: true, 
   }
 );
 

@@ -6,6 +6,7 @@ import {
   deleteCustomer,
 } from "../../services/customersService.js";
 import AddCustomerModal from "../../components/AddCustomerModal/AddCustomerModal.jsx";
+import EditCustomerModal from "../../components/EditCustomerModal/EditCustomerModal.jsx";
 
 function CustomersPage() {
   const [filter, setFilter] = useState("");
@@ -46,6 +47,21 @@ function CustomersPage() {
     setCustomers((prev) => [newCustomer, ...prev]);
 
     // İstersen backend'den tekrar çekmek için bunu da kullanabilirsin:
+    // loadCustomers(pagination.page, searchName);
+  };
+
+  const handleCustomerUpdated = (updatedCustomer) => {
+    if (!updatedCustomer) return;
+
+    setCustomers((prev) =>
+      prev.map((c) => {
+        const id = c._id || c.id;
+        const updatedId = updatedCustomer._id || updatedCustomer.id;
+        return id === updatedId ? { ...c, ...updatedCustomer } : c;
+      })
+    );
+
+    // İstersen her güncellemeden sonra tekrar fetch de edebilirsin:
     // loadCustomers(pagination.page, searchName);
   };
 
@@ -247,7 +263,7 @@ function CustomersPage() {
                   </div>
                   <div className={`${styles.Cell} ${styles.ActionCell}`}>
                     {/* Edit butonu (Edit modalı yazınca buraya bağlayacağız) */}
-                    {/* 
+
                     <button
                       type="button"
                       className={styles.EditBtn}
@@ -255,7 +271,7 @@ function CustomersPage() {
                     >
                       Edit
                     </button>
-                    */}
+
                     <button
                       type="button"
                       className={styles.DeleteBtn}
@@ -281,6 +297,12 @@ function CustomersPage() {
         isOpen={isAddModalOpen}
         onClose={() => setIsAddModalOpen(false)}
         onCustomerAdded={handleCustomerAdded}
+      />
+      <EditCustomerModal
+        isOpen={isEditModalOpen}
+        onClose={() => setIsEditModalOpen(false)}
+        customer={selectedCustomer}
+        onCustomerUpdated={handleCustomerUpdated}
       />
     </div>
   );

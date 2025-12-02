@@ -1,13 +1,7 @@
 import Order from "../models/Order.js";
 import { isValidObjectId } from "mongoose";
 
-/**
- * GET /api/orders
- * Query:
- *  - name (opsiyonel, User Name filtresi için)
- *  - page (opsiyonel, default 1)
- *  - limit (opsiyonel, default 10)
- */
+
 export const getOrders = async (req, res, next) => {
   try {
     const { name, page = 1, limit = 10 } = req.query;
@@ -61,7 +55,7 @@ export const createOrder = async (req, res, next) => {
       orderDate,
     } = req.body;
 
-    // Basit zorunlu alan kontrolleri
+  
     if (!customerName || !customerEmail || !address || !products || !products.length) {
       return res.status(400).json({
         message:

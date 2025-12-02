@@ -1,18 +1,6 @@
 import Product from "../models/Product.js";
 import { isValidObjectId } from "mongoose";
 
-/**
- * GET /api/products
- *
- * Query parametreleri:
- *  - search (opsiyonel, name üzerinde arama)
- *  - category (opsiyonel, kategori filtresi)
- *  - minPrice, maxPrice (opsiyonel, fiyat aralığı)
- *  - sortBy (opsiyonel, default: "createdAt")
- *  - order (opsiyonel, "asc" | "desc", default: "desc")
- *  - page (opsiyonel, default: 1)
- *  - limit (opsiyonel, default: 10)
- */
 
 export const getProducts = async (req, res, next) => {
   try {
@@ -70,7 +58,7 @@ export const getProducts = async (req, res, next) => {
       Product.countDocuments(filters),
     ]);
 
-    // 🔹 Artık gerçekten ürün listesini döndürüyoruz
+  
     return res.json({
       data: items,
       pagination: {
@@ -90,7 +78,7 @@ export const createProduct = async (req, res, next) => {
     const { name, category, price, stock, supplier, description, image } =
       req.body;
 
-    //Zorunlu alan kontrolü - projeye göre istersen genişletiebiliriz
+   
     if (!name || !category || price == null) {
       return res.status(400).json({
         message: "name, category ve price alanları zorunludur.",

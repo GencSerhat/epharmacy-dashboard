@@ -5,7 +5,7 @@ export const authMiddleware = async (req, res, next) => {
   try {
     const authHeader = req.headers.authorization || "";
 
-    // "Bearer <token>" formatını bekliyoruz
+    // "Bearer <token>" formatı
     if (!authHeader.startsWith("Bearer ")) {
       return res.status(401).json({ message: "Not authorized: no token" });
     }
@@ -29,7 +29,7 @@ export const authMiddleware = async (req, res, next) => {
         .json({ message: "Not authorized: user not found" });
     }
 
-    // Artık backend’in her yerinde req.user üzerinden kullanıcıya erişebilirsin
+   
     req.user = user;
     next();
   } catch (error) {

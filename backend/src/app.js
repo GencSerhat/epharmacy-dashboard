@@ -17,10 +17,8 @@ app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
 
-//Basit health-check route (sonra silinecek)
-app.get("/api/health", (req, res) => {
-  res.json({ status: "ok", message: "E-PhaRmacy Dashboard API is running" });
-});
+
+
 
 app.use("/api/user", userRoutes);
 app.use("/api",dashboardRoutes);
@@ -29,8 +27,6 @@ app.use("/api/orders", ordersRouter);
 app.use("/api/products", productsRouter);
 app.use("/api/suppliers", suppliersRouter);
 
-//Bıraya ilerde routes eklenecek
-// örn: app.use("/api/user", authRouter);
-// örn: app.use("/api/dashboard", dashboardRouter);
+
 
 export default app;

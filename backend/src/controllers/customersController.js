@@ -1,13 +1,7 @@
 import Customer from "../models/Customer.js";
 import Order from "../models/Order.js";
 
-/**
- * GET /api/customers
- * Query:
- *  - name (opsiyonel, User Name filtresi)
- *  - page (opsiyonel, default 1)
- *  - limit (opsiyonel, default 10)
- */
+
 export const getCustomers = async (req, res, next) => {
   try {
     const { name, page = 1, limit = 10 } = req.query;
@@ -48,15 +42,11 @@ export const getCustomers = async (req, res, next) => {
   }
 };
 
-/**
- * GET /api/customers/:customerId
- * Tek müşteri + sipariş geçmişi
- */
 export const getCustomerById = async (req, res, next) => {
   try {
     const { customerId } = req.params;
 
-    // 1) Müşteriyi bul
+    //Müşteriyi bul
     const customer = await Customer.findById(customerId).select(
       "name email address phone country registerDate createdAt"
     );
@@ -65,9 +55,7 @@ export const getCustomerById = async (req, res, next) => {
       return res.status(404).json({ message: "Customer not found" });
     }
 
-    // 2) Müşterinin sipariş geçmişi
-    // Order şemanda customer ref yok, customerEmail var.
-    // Bu yüzden email üzerinden eşleştiriyoruz.
+  
     const orders = await Order.find({ customerEmail: customer.email })
       .sort({ orderDate: -1 }) // şemanda orderDate var
       .select("products totalPrice status orderDate createdAt");
@@ -77,6 +65,60 @@ export const getCustomerById = async (req, res, next) => {
       customer,
       orders,
     });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const createCustomer = async (req, res, next) => {
+  try {
+    const { name, email, phone, address } = req.body;
+
+    const customer = await Customer.create({
+      name,
+      email,
+      phone,
+      address,
+    });
+
+    return res.status(201).json({ data: customer });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const updateCustomerById = async (req, res, next) => {
+  try {
+    const { customerId } = req.params;
+
+    const updatedCustomer = await Customer.findByIdAndUpdate(
+      customerId,
+      req.body,
+      { new: true }
+    );
+
+    if (!updatedCustomer) {
+      return res.status(404).json({ message: "Customer not found" });
+    }
+
+    return res.json({ data: updatedCustomer });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const deleteCustomerById = async (req, res, next) => {
+  try {
+    const { customerId } = req.params;
+
+    const deletedCustomer = await Customer.findByIdAndDelete(customerId);
+
+    if (!deletedCustomer) {
+      return res.status(404).json({ message: "Customer not found" });
+    }
+
+    // 204 – içerik yok
+    return res.status(204).send();
   } catch (error) {
     next(error);
   }

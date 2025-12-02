@@ -1,3 +1,5 @@
+/* src/components/EditCustomerModal/EditCustomerModal.module.css */
+
 .ModalOverlay {
   position: fixed;
   inset: 0;
@@ -52,14 +54,13 @@
   row-gap: 16px;
 }
 
-/* Her form satırı label + input’u alt alta tutsun */
 .FormRow {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
-/* Adres alanı tam genişlikte olsun */
+/* Adres alanı tam genişlikte */
 .FormRow:nth-child(4) {
   grid-column: 1 / -1;
 }
@@ -99,7 +100,6 @@
   resize: vertical;
 }
 
-/* Hata mesajı tam genişlikte */
 .ErrorMessage {
   grid-column: 1 / -1;
   font-size: 0.8rem;
@@ -107,7 +107,6 @@
   margin-top: -4px;
 }
 
-/* Buton alanı da tam genişlikte */
 .ModalActions {
   grid-column: 1 / -1;
   display: flex;
@@ -130,7 +129,7 @@
     transform 0.05s ease, color 0.15s ease;
 }
 
-/* Yeşil Add butonu */
+/* Yeşil Güncelle butonu */
 .SaveButton {
   background-color: #22c55e;
   color: #ffffff;
@@ -142,7 +141,7 @@
   box-shadow: 0 12px 28px rgba(22, 163, 74, 0.4);
 }
 
-/* Gri Cancel butonu */
+/* Gri İptal butonu */
 .CancelButton {
   background-color: #f3f4f6;
   color: #4b5563;
@@ -161,7 +160,6 @@
   transform: none;
 }
 
-/* Küçük ekran uyumu */
 @media (max-width: 480px) {
   .ModalContent {
     padding: 20px 18px 18px;
@@ -173,11 +171,9 @@
     grid-template-columns: 1fr;
   }
 
-  .FormRow:nth-child(4) {
-    grid-column: 1 / -1;
-  }
-
+  .FormRow:nth-child(4),
+  .ErrorMessage,
   .ModalActions {
-    justify-content: flex-start;
+    grid-column: 1 / -1;
   }
 }

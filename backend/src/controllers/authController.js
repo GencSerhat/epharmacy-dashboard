@@ -6,14 +6,14 @@ export const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
-    //Basit doğrulama
+    //doğrulama
     if (!email || !password) {
       return res
         .status(400)
         .json({ message: "Email and password are required" });
     }
 
-    //Kullanıcıyı email ile bul
+    
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(401).json({ message: "Invalid email or password" });
@@ -43,8 +43,7 @@ export const login = async (req, res, next) => {
 
 export const logout = async (req, res, next) => {
   try {
-    //Steteles JWT : backend tarafında aslında birşey silinmiyor
-    //Frontend tokenı localstorage/cookiden silecek
+    
     return res.json({ message: "Logged out succesfully" });
   } catch (error) {
     next(error);
@@ -53,7 +52,7 @@ export const logout = async (req, res, next) => {
 
 export const getUserInfo = async (req, res, next) => {
   try {
-    //authMiddleware içinde req.user'ı dolduracağız.
+    
     if (!req.user) {
       return res.status(401).json({ message: "Not authorized" });
     }

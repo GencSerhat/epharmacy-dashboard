@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const orderSchema = new mongoose.Schema(
   {
     customerName: {
-      // User Info - isim
+     
       type: String,
       required: true,
       trim: true,
@@ -15,7 +15,7 @@ const orderSchema = new mongoose.Schema(
       lowercase: true,
     },
     address: {
-      // Address
+      
       type: String,
       required: true,
       trim: true,
@@ -23,7 +23,7 @@ const orderSchema = new mongoose.Schema(
     products: [
       {
         name: {
-          // Products column (sade biçimde)
+          
           type: String,
           required: true,
           trim: true,
@@ -42,18 +42,18 @@ const orderSchema = new mongoose.Schema(
       },
     ],
     orderDate: {
-      // Order date
+    
       type: Date,
       default: Date.now,
     },
     totalPrice: {
-      // Price column
+     
       type: Number,
       required: true,
       min: 0,
     },
     status: {
-      // Status column
+     
       type: String,
       enum: ["pending", "paid", "shipped", "cancelled"],
       default: "pending",

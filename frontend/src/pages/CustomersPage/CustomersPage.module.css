@@ -194,3 +194,21 @@
   opacity: 0.6;
   cursor: default;
 }
+
+.EditBtn {
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: none;
+  font-size: 0.8rem;
+  cursor: pointer;
+  background-color: #0ea5e9;
+  color: #0b1120;
+  margin-right: 6px;
+  transition: background-color 0.15s ease, transform 0.05s ease,
+    box-shadow 0.15s ease;
+}
+
+.EditBtn:hover {
+  background-color: #38bdf8;
+  box-shadow: 0 8px 18px rgba(56, 189, 248, 0.45);
+}
