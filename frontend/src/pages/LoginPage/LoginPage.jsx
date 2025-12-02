@@ -1,4 +1,3 @@
-// src/pages/LoginPage/LoginPage.jsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./LoginPage.module.css";
@@ -15,23 +14,21 @@ function LoginPage() {
 
       const data = await login(formData);
 
-      // Backend'in cevabına göre burayı ayarla
-      // Örnek: { token, user }
+    
       if (data?.token) {
         localStorage.setItem("accessToken", data.token);
       }
 
-      // İleride user bilgisini context'e alacağız
-      // Şimdilik başarılıysa dashboard'a git
+ 
       navigate("/dashboard");
     } catch (error) {
       console.error("Login error:", error);
-      // Backend message varsa onu göster, yoksa genel mesaj
+      
       const message =
         error?.response?.data?.message ||
         "Invalid email or password. Please try again.";
       setServerError(message);
-      // throw etmiyoruz ki RHF içinde additional error olmasın
+    
     }
   };
 

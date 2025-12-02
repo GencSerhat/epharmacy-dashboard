@@ -1,7 +1,6 @@
-// src/services/customersService.js
 import api from "./api.js";
 
-// Customers verisini backend'den çek
+
 export async function fetchCustomers(params = {}) {
   const { data } = await api.get("/customers", {
     params: {
@@ -16,22 +15,22 @@ export async function fetchCustomers(params = {}) {
 }
 
 
-// ✅ Yeni müşteri oluştur
+// Yeni müşteri oluştur
 export async function createCustomer(payload) {
   const { data } = await api.post("/customers", payload);
   console.log("Create customer response:", data);
-  // backend genelde { data: newCustomer } dönüyor, o yüzden:
+
   return data.data || data;
 }
 
-// ✅ Müşteri güncelle
+//  Müşteri güncelle
 export async function updateCustomer(id, payload) {
   const { data } = await api.put(`/customers/${id}`, payload);
   console.log("Update customer response:", data);
   return data.data || data;
 }
 
-// ✅ Müşteri sil
+//  Müşteri sil
 export async function deleteCustomer(id) {
   const { data } = await api.delete(`/customers/${id}`);
   console.log("Delete customer response:", data);

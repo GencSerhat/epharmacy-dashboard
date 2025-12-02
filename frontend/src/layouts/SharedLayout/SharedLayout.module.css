@@ -1,18 +1,17 @@
-/* Tüm layout: sidebar + sağdaki alan */
 .Layout {
   display: grid;
-  grid-template-columns: 80px minmax(0, 1fr); /* 80px sidebar, kalan içerik */
+  grid-template-columns: 80px minmax(0, 1fr); 
   min-height: 100vh;
   width: 100%;
 }
 
-/* Sol taraf: sidebar alanı */
+
 .Sidebar {
   grid-column: 1 / 2;
-  background-color: #f0fdf4; /* istersen değiştirebilirsin */
+  background-color: #f0fdf4; 
 }
 
-/* Sidebar içi, merkezleme vs. için */
+
 .SidebarInner {
   height: 100%;
   display: flex;
@@ -20,7 +19,7 @@
   justify-content: center;
 }
 
-/* Sağ taraf: header + content */
+
 .MainArea {
   grid-column: 2 / 3;
   display: flex;
@@ -29,12 +28,12 @@
   background-color: #f7f9fb;
 }
 
-/* Header üstte sabit yükseklik gibi dursun */
+
 .MainArea > header {
   flex-shrink: 0;
 }
 
-/* Sayfanın asıl içeriği */
+
 .Content {
   flex: 1;
   padding: 24px 32px 32px;

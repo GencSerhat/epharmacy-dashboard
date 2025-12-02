@@ -1,4 +1,3 @@
-// src/pages/OrdersPage/OrdersPage.jsx
 import { useEffect, useState } from "react";
 import styles from "./OrdersPage.module.css";
 import { fetchOrders } from "../../services/ordersService.js";
@@ -25,13 +24,13 @@ function OrdersPage() {
 
         console.log("Orders API response:", data);
 
-    // Gelen cevaptan güvenli şekilde dizi çıkar
+  
 let apiOrders = [];
 
 if (Array.isArray(data)) {
   apiOrders = data;
 } else if (Array.isArray(data?.data)) {
-  // ✅ backend: { data: [...], pagination: {...} }
+
   apiOrders = data.data;
 } else if (Array.isArray(data?.orders)) {
   apiOrders = data.orders;
@@ -58,12 +57,12 @@ if (Array.isArray(data)) {
     loadOrders();
   }, [searchName]);
 
-  // Filter butonuna basınca backend'e name ile istek gitsin
+  
   const handleFilterClick = () => {
     setSearchName(filter.trim());
   };
 
-  // UI'da gösterirken field isimlerini esnek kullan
+  
   const getUserName = (order) =>
     order.userName ||
     order.customerName ||
@@ -114,7 +113,7 @@ if (Array.isArray(data)) {
     return styles.Status;
   };
 
-  // map öncesi güvenlik: her durumda dizi olsun
+
   const safeOrders = Array.isArray(orders) ? orders : [];
 
   return (
@@ -133,7 +132,7 @@ if (Array.isArray(data)) {
         </button>
       </div>
 
-      {/* Hata / Loading mesajları */}
+
       {loading && <p>Loading orders...</p>}
       {error && <p style={{ color: "#eb5050", fontSize: 13 }}>{error}</p>}
 

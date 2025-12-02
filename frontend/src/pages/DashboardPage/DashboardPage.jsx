@@ -1,4 +1,3 @@
-// src/pages/DashboardPage/DashboardPage.jsx
 import { useEffect, useState } from "react";
 import styles from "./DashboardPage.module.css";
 import DashboardStatistics from "../../components/DashboardStatistics/DashboardStatistics.jsx";
@@ -33,7 +32,7 @@ function DashboardPage() {
 
     loadDashboard();
   }, []);
-// stats objesinden oku
+
 const totalProducts = data?.stats?.allProducts ?? 0;
 const totalSuppliers = data?.stats?.allSuppliers ?? 0;
 const totalCustomers = data?.stats?.allCustomers ?? 0;
@@ -49,14 +48,14 @@ const incomeExpenses = data?.transactions ?? [];
 
       {!loading && !error && (
         <>
-          {/* Üst istatistik kartları */}
+   
           <DashboardStatistics
             totalProducts={totalProducts}
             totalSuppliers={totalSuppliers}
             totalCustomers={totalCustomers}
           />
 
-          {/* Alt iki kolon: Recent Customers + Income/Expenses */}
+          
           <div className={styles.BottomGrid}>
             <RecentCustomers customers={recentCustomers} />
             <IncomeExpenses items={incomeExpenses} />

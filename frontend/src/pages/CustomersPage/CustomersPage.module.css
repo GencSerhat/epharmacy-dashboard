@@ -1,12 +1,10 @@
-/* src/pages/CustomersPage/CustomersPage.module.css */
-
 .CustomersPage {
   padding: 32px 40px 40px;
   background-color: #f6f8fb;
   min-height: 100vh;
 }
 
-/* ÜST BAR ------------------------------------------------ */
+/* ÜST BAR */
 
 .FilterBar {
   display: flex;
@@ -49,7 +47,7 @@
   transform: scale(0.98);
 }
 
-/* SAYFALAMA ------------------------------------------------ */
+/* SAYFALAMA  */
 
 .Pagination {
   margin-left: auto;
@@ -95,7 +93,7 @@
   color: #ffffff;
 }
 
-/* TABLO KISMI -------------------------------------------- */
+/* TABLO KISMI */
 
 .TableBlock {
   margin-top: 8px;
@@ -116,8 +114,6 @@
   overflow: hidden;
 }
 
-/* Başlık satırı */
-
 .Row {
   display: grid;
   grid-template-columns: 1.4fr 1.5fr 1.3fr 1.1fr 1.1fr 0.9fr;
@@ -132,8 +128,6 @@
   font-weight: 500;
   color: #4b5563;
 }
-
-/* Normal satır */
 
 .Row:nth-child(odd):not(.HeaderRow) {
   background-color: #ffffff;
@@ -150,15 +144,11 @@
   white-space: nowrap;
 }
 
-/* Boş liste mesajı */
-
 .EmptyRow {
   padding: 20px 24px 22px;
   font-size: 14px;
   color: #9ca3af;
 }
-
-/* Action butonu (şimdilik pasif) */
 
 .ActionButton {
   padding: 6px 14px;
@@ -182,7 +172,8 @@
   background-color: #ffffff;
   color: #eb5050;
   cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .DeleteBtn:hover:not(:disabled) {

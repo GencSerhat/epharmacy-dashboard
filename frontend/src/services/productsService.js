@@ -1,4 +1,3 @@
-// src/services/productsService.js
 import api from "./api.js";
 
 // ÜRÜNLERİ LİSTELE

@@ -1,4 +1,3 @@
-// src/services/suppliersService.js
 import api from "./api.js";
 
 // Tüm tedarikçileri getir

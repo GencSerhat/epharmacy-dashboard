@@ -1,4 +1,3 @@
-// src/pages/SuppliersPage/SuppliersPage.jsx
 import { useEffect, useState } from "react";
 import styles from "./SuppliersPage.module.css";
 import {
@@ -17,31 +16,25 @@ function SuppliersPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // Add modal state
   const [isAddOpen, setIsAddOpen] = useState(false);
-  // Edit modal state
+
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [editingSupplier, setEditingSupplier] = useState(null);
 
-  // Hem add hem edit için tek submitting flag (istersen sonra ayırırız)
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // -----------------------------------
-  // API: Supplier listesini yükle
-  // -----------------------------------
   const loadSuppliers = async (nameParam) => {
     try {
       setLoading(true);
       setError("");
 
-    const res = await fetchSuppliers({
-  name: (nameParam ?? searchName) || undefined,
-  page: 1,
-  limit: 20,
-});
+      const res = await fetchSuppliers({
+        name: (nameParam ?? searchName) || undefined,
+        page: 1,
+        limit: 20,
+      });
 
-      const apiSuppliers =
-        res?.data || res?.suppliers || res?.items || [];
+      const apiSuppliers = res?.data || res?.suppliers || res?.items || [];
 
       setSuppliers(apiSuppliers);
     } catch (err) {
@@ -57,16 +50,12 @@ function SuppliersPage() {
 
   useEffect(() => {
     loadSuppliers();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchName]);
 
   const handleFilterClick = () => {
     setSearchName(filter.trim());
   };
 
-  // -----------------------------------
-  // Yeni supplier ekleme
-  // -----------------------------------
   const handleAddSupplier = async (values) => {
     try {
       setIsSubmitting(true);
@@ -91,17 +80,13 @@ function SuppliersPage() {
         err?.response?.data || err
       );
       const message =
-        err?.response?.data?.message ||
-        "Supplier eklenirken bir hata oluştu.";
+        err?.response?.data?.message || "Supplier eklenirken bir hata oluştu.";
       setError(message);
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  // -----------------------------------
-  // Edit modalını aç / kapat
-  // -----------------------------------
   const handleEditClick = (supplier) => {
     setEditingSupplier(supplier);
     setIsEditOpen(true);
@@ -113,9 +98,6 @@ function SuppliersPage() {
     setEditingSupplier(null);
   };
 
-  // -----------------------------------
-  // Mevcut supplier güncelleme
-  // -----------------------------------
   const handleUpdateSupplier = async (values) => {
     if (!editingSupplier) return;
 
@@ -152,9 +134,6 @@ function SuppliersPage() {
     }
   };
 
-  // -----------------------------------
-  // Helper'lar (UI formatlama)
-  // -----------------------------------
   const formatDate = (value) => {
     if (!value) return "—";
     const date = new Date(value);
@@ -178,8 +157,7 @@ function SuppliersPage() {
       return `${styles.Status} ${styles.StatusActive}`;
     if (status === "cancelled")
       return `${styles.Status} ${styles.StatusDeactive}`;
-    if (status === "pending")
-      return `${styles.Status} ${styles.StatusPending}`;
+    if (status === "pending") return `${styles.Status} ${styles.StatusPending}`;
     return styles.Status;
   };
 
@@ -194,16 +172,10 @@ function SuppliersPage() {
           value={filter}
           onChange={(e) => setFilter(e.target.value)}
         />
-        <button
-          className={styles.FilterButton}
-          onClick={handleFilterClick}
-        >
+        <button className={styles.FilterButton} onClick={handleFilterClick}>
           Filter
         </button>
-        <button
-          className={styles.AddButton}
-          onClick={() => setIsAddOpen(true)}
-        >
+        <button className={styles.AddButton} onClick={() => setIsAddOpen(true)}>
           + Add a new supplier
         </button>
       </div>
@@ -227,10 +199,7 @@ function SuppliersPage() {
             </div>
 
             {suppliers.map((supplier) => (
-              <div
-                key={supplier._id || supplier.id}
-                className={styles.Row}
-              >
+              <div key={supplier._id || supplier.id} className={styles.Row}>
                 <div className={styles.Cell}>{supplier.name}</div>
                 <div className={styles.Cell}>{supplier.address}</div>
                 <div className={styles.Cell}>{supplier.company}</div>
@@ -241,9 +210,7 @@ function SuppliersPage() {
                   {Number(supplier.amount).toFixed(2)}
                 </div>
                 <div className={styles.CellCenter}>
-                  <span
-                    className={getStatusClass(supplier.status)}
-                  >
+                  <span className={getStatusClass(supplier.status)}>
                     {formatStatus(supplier.status)}
                   </span>
                 </div>
@@ -260,15 +227,12 @@ function SuppliersPage() {
             ))}
 
             {suppliers.length === 0 && (
-              <div className={styles.EmptyRow}>
-                No suppliers found.
-              </div>
+              <div className={styles.EmptyRow}>No suppliers found.</div>
             )}
           </div>
         </section>
       )}
 
-      {/* Add Supplier Modal */}
       <AddSupplierModal
         isOpen={isAddOpen}
         onClose={() => !isSubmitting && setIsAddOpen(false)}
@@ -276,7 +240,6 @@ function SuppliersPage() {
         isSubmitting={isSubmitting}
       />
 
-      {/* Edit Supplier Modal */}
       <EditSupplierModal
         isOpen={isEditOpen}
         onClose={handleCloseEdit}

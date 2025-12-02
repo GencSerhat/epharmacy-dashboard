@@ -1,9 +1,6 @@
-// src/pages/ProductsPage/ProductsPage.jsx
-
 import { useEffect, useState } from "react";
 import styles from "./ProductsPage.module.css";
 
-// Services
 import {
   fetchProducts,
   createProduct,
@@ -11,7 +8,6 @@ import {
   deleteProduct,
 } from "../../services/productsService.js";
 
-// Modals
 import AddProductModal from "../../components/AddProductModal/AddProductModal.jsx";
 import EditProductModal from "../../components/EditProductModal/EditProductModal.jsx";
 
@@ -29,9 +25,6 @@ function ProductsPage() {
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
-  // --------------------
-  // Fetch Products
-  // --------------------
   const loadProducts = async () => {
     try {
       setLoading(true);
@@ -48,29 +41,21 @@ function ProductsPage() {
     } catch (err) {
       console.error("Products load error:", err);
       setError(
-        err?.response?.data?.message ||
-          "Ürünler yüklenirken bir hata oluştu."
+        err?.response?.data?.message || "Ürünler yüklenirken bir hata oluştu."
       );
     } finally {
       setLoading(false);
     }
   };
 
-  // İlk yükleme + filtre
   useEffect(() => {
     loadProducts();
   }, [searchName]);
 
-  // --------------------
-  // Filter button
-  // --------------------
   const handleFilterClick = () => {
     setSearchName(filter.trim());
   };
 
-  // --------------------
-  // Add new product
-  // --------------------
   const handleAddProduct = async (formData) => {
     try {
       await createProduct(formData);
@@ -81,17 +66,11 @@ function ProductsPage() {
     }
   };
 
-  // --------------------
-  // Edit Modal Açma
-  // --------------------
   const openEditModal = (product) => {
     setSelectedProduct(product);
     setIsEditOpen(true);
   };
 
-  // --------------------
-  // Ürün Güncelleme
-  // --------------------
   const handleSaveEdit = async (updatedData) => {
     try {
       const id = updatedData.id;
@@ -106,9 +85,6 @@ function ProductsPage() {
     }
   };
 
-  // --------------------
-  // Ürün Silme
-  // --------------------
   const handleDelete = async (id) => {
     if (!window.confirm("Bu ürünü silmek istediğinize emin misiniz?")) return;
 
@@ -120,9 +96,6 @@ function ProductsPage() {
     }
   };
 
-  // --------------------
-  // JSX
-  // --------------------
   return (
     <div className={styles.ProductsPage}>
       {/* Filter Bar */}
@@ -137,15 +110,11 @@ function ProductsPage() {
         <button className={styles.FilterButton} onClick={handleFilterClick}>
           Filter
         </button>
-        <button
-          className={styles.AddButton}
-          onClick={() => setIsAddOpen(true)}
-        >
+        <button className={styles.AddButton} onClick={() => setIsAddOpen(true)}>
           + Add a new product
         </button>
       </div>
 
-      {/* Error & Loading */}
       {loading && <p>Loading products...</p>}
       {error && <p style={{ color: "#eb5050", fontSize: 13 }}>{error}</p>}
 
@@ -197,14 +166,12 @@ function ProductsPage() {
         </section>
       )}
 
-      {/* Add Product Modal */}
       <AddProductModal
         isOpen={isAddOpen}
         onClose={() => setIsAddOpen(false)}
         onSubmit={handleAddProduct}
       />
 
-      {/* Edit Product Modal */}
       <EditProductModal
         isOpen={isEditOpen}
         onClose={() => setIsEditOpen(false)}

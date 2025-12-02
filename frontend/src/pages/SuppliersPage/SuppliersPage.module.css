@@ -1,6 +1,6 @@
 .SuppliersPage {
   padding: 24px;
-  color: #111827;              /* Tüm sayfada koyu yazı */
+  color: #111827;
 }
 
 /* FILTER BAR */
@@ -74,7 +74,7 @@
   border-radius: 12px;
   border: 1px solid #e5e7eb;
   overflow: hidden;
-  background-color: #ffffff;    /* Kart gibi beyaz tablo */
+  background-color: #ffffff;
 }
 
 .Row {
@@ -82,16 +82,16 @@
   grid-template-columns: 1.5fr 1.5fr 1fr 1fr 1fr 1fr 1fr;
   padding: 12px 16px;
   border-bottom: 1px solid #f3f4f6;
-  color: #111827;               /* Satır yazıları net */
+  color: #111827;
   font-size: 14px;
 }
 
 .Row:nth-child(even):not(.HeaderRow) {
-  background-color: #f9fafb;    /* Hafif zebra effect */
+  background-color: #f9fafb;
 }
 
 .HeaderRow {
-  background-color: #e7f7ee;    /* Figma’daki yeşilimsi header */
+  background-color: #e7f7ee;
   font-weight: 600;
   color: #111827;
 }

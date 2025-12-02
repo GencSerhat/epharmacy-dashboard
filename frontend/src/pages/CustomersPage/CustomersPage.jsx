@@ -1,4 +1,3 @@
-// src/pages/CustomersPage/CustomersPage.jsx
 import { useEffect, useState } from "react";
 import styles from "./CustomersPage.module.css";
 import {
@@ -35,7 +34,7 @@ function CustomersPage() {
     setIsAddModalOpen(true);
   };
 
-  // Edit modal aç (şimdilik sadece tanımlı, EditModal ekleyince kullanılacak)
+
   const openEditModal = (customer) => {
     setSelectedCustomer(customer);
     setIsEditModalOpen(true);
@@ -43,11 +42,10 @@ function CustomersPage() {
 
   // Yeni müşteri eklendiğinde listeyi güncelle
   const handleCustomerAdded = (newCustomer) => {
-    // Optimistik olarak liste başına ekliyoruz
+   
     setCustomers((prev) => [newCustomer, ...prev]);
 
-    // İstersen backend'den tekrar çekmek için bunu da kullanabilirsin:
-    // loadCustomers(pagination.page, searchName);
+  
   };
 
   const handleCustomerUpdated = (updatedCustomer) => {
@@ -61,8 +59,7 @@ function CustomersPage() {
       })
     );
 
-    // İstersen her güncellemeden sonra tekrar fetch de edebilirsin:
-    // loadCustomers(pagination.page, searchName);
+   
   };
 
   const loadCustomers = async (pageToLoad = 1, nameParam = "") => {
@@ -99,13 +96,13 @@ function CustomersPage() {
     }
   };
 
-  // İlk yükleme + filtre değişince tetiklenir
+
   useEffect(() => {
     loadCustomers(1, searchName);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  
   }, [searchName]);
 
-  // Filter butonuna tıklayınca
+
   const handleFilterClick = () => {
     setSearchName(filter.trim());
   };
@@ -126,7 +123,7 @@ function CustomersPage() {
     }
   };
 
-  // ❌ Müşteri silme
+  //  Müşteri silme
   const handleDeleteCustomer = async (id) => {
     const customerId = id;
     if (!customerId) return;
@@ -184,7 +181,7 @@ function CustomersPage() {
 
   return (
     <div className={styles.CustomersPage}>
-      {/* Filter + Pagination bar */}
+      
       <div className={styles.TopBar}>
         <div className={styles.FilterGroup}>
           <input
@@ -202,7 +199,7 @@ function CustomersPage() {
             Filter
           </button>
 
-          {/* Yeni müşteri ekleme butonu */}
+        
           <button
             className={styles.FilterButton}
             type="button"
@@ -262,7 +259,7 @@ function CustomersPage() {
                     {formatDate(customer.registerDate || customer.createdAt)}
                   </div>
                   <div className={`${styles.Cell} ${styles.ActionCell}`}>
-                    {/* Edit butonu (Edit modalı yazınca buraya bağlayacağız) */}
+                   
 
                     <button
                       type="button"
@@ -292,7 +289,7 @@ function CustomersPage() {
         </section>
       )}
 
-      {/* Add Customer Modal */}
+    
       <AddCustomerModal
         isOpen={isAddModalOpen}
         onClose={() => setIsAddModalOpen(false)}
