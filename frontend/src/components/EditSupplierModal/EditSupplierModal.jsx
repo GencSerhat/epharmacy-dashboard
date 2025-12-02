@@ -1,4 +1,3 @@
-// src/components/EditSupplierModal/EditSupplierModal.jsx
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -54,7 +53,7 @@ function EditSupplierModal({
     },
   });
 
-  // input type="date" için YYYY-MM-DD formatına çevir
+
   const toInputDate = (value) => {
     if (!value) return "";
     const d = new Date(value);

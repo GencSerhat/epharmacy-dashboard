@@ -1,4 +1,3 @@
-// src/components/Sidebar/Sidebar.jsx
 import { NavLink } from "react-router-dom";
 import styles from "./Sidebar.module.css";
 
@@ -13,7 +12,7 @@ const menuItems = [
 function Sidebar() {
   return (
     <nav className={styles.SidebarNav}>
-      {/* Üstte logo için yuvarlak buton (Figma’daki gibi) */}
+ 
       <div className={styles.TopButton}>
         <span className={styles.TopIcon}>⟳</span>
       </div>

@@ -17,10 +17,7 @@ function SharedLayout() {
       {/* Sağ taraf: header + içerik */}
       <div className={styles.MainArea}>
         <Header />
-        {/* Buraya bir sonraki adımlarda gerçek Header bileşenini koyacağız */}
-        {/* <h1 className={styles.HeaderTitle}>Medicine store</h1>
-          <p className={styles.HeaderSubtitle}>Dashboard | vendor@gmail.com</p>
-         */}
+    
 
         <main className={styles.Content}>
           {/* İç içe rotalar buradan render edilecek */}

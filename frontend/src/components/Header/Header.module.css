@@ -1,5 +1,3 @@
-/* src/components/Header/Header.module.css */
-
 .Header {
   padding: 24px 32px;
   background-color: #ffffff;
@@ -63,7 +61,7 @@
   color: #7b7c80;
 }
 
-/* Sağ kısım: logout */
+
 .Right {
   display: flex;
   align-items: center;

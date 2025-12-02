@@ -3,7 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import styles from "./LoginForm.module.css";
 
-//Yup doğrulama şeması
+
 
 const loginSchema = yup.object({
     email:yup
@@ -29,12 +29,11 @@ function LoginForm({ onSubmit }) {
     },
   });
   const handleFormSubmit = async (data) => {
-    // Eğer parent (LoginPage) onSubmit gönderirse onu çalıştır,
-    // yoksa şimdilik console'a yaz.
+ 
     if (onSubmit) {
       await onSubmit(data);
     } else {
-      // Şimdilik placeholder, bir sonraki adımda API isteğine bağlayacağız
+      
       console.log("Login form data:", data);
     }
   };

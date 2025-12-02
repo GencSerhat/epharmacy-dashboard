@@ -1,4 +1,3 @@
-// src/components/EditCustomerModal/EditCustomerModal.jsx
 import { useEffect, useState } from "react";
 import styles from "./EditCustomerModal.module.css";
 import { updateCustomer } from "../../services/customersService";

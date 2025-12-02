@@ -52,14 +52,14 @@
   row-gap: 16px;
 }
 
-/* Her form satırı label + input’u alt alta tutsun */
+
 .FormRow {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
-/* Adres alanı tam genişlikte olsun */
+
 .FormRow:nth-child(4) {
   grid-column: 1 / -1;
 }
@@ -99,7 +99,7 @@
   resize: vertical;
 }
 
-/* Hata mesajı tam genişlikte */
+
 .ErrorMessage {
   grid-column: 1 / -1;
   font-size: 0.8rem;
@@ -107,7 +107,7 @@
   margin-top: -4px;
 }
 
-/* Buton alanı da tam genişlikte */
+
 .ModalActions {
   grid-column: 1 / -1;
   display: flex;
@@ -161,7 +161,7 @@
   transform: none;
 }
 
-/* Küçük ekran uyumu */
+
 @media (max-width: 480px) {
   .ModalContent {
     padding: 20px 18px 18px;

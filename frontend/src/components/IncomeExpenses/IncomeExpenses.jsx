@@ -1,4 +1,3 @@
-// src/components/IncomeExpenses/IncomeExpenses.jsx
 import styles from "./IncomeExpenses.module.css";
 
 function IncomeExpenses({ items = [] }) {

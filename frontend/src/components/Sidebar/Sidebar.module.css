@@ -1,5 +1,3 @@
-/* src/components/Sidebar/Sidebar.module.css */
-
 .SidebarNav {
   width: 100%;
   height: 100%;
@@ -10,7 +8,7 @@
   justify-content: space-between;
 }
 
-/* Üstteki yuvarlak buton */
+
 .TopButton {
   width: 40px;
   height: 40px;
@@ -28,7 +26,7 @@
   line-height: 1;
 }
 
-/* Menü */
+
 .MenuList {
   list-style: none;
   padding: 0;
@@ -38,8 +36,7 @@
   gap: 16px;
 }
 
-.MenuItem {
-}
+
 
 .MenuLink {
   width: 40px;
@@ -53,7 +50,7 @@
   outline: none;
 }
 
-/* Pasif ikon */
+
 .IconCircle {
   width: 24px;
   height: 24px;
@@ -61,12 +58,12 @@
   background-color: #e7f7ed;
 }
 
-/* Aktif menü: yeşil daire */
+
 .MenuLinkActive .IconCircle {
   background-color: #59b17a;
 }
 
-/* Sadece ekran okuyucu için (label) */
+
 .SrOnly {
   position: absolute;
   width: 1px;
@@ -79,7 +76,7 @@
   border: 0;
 }
 
-/* Alt boşluk için biraz margin */
+
 .SidebarNav::after {
   content: "";
   display: block;

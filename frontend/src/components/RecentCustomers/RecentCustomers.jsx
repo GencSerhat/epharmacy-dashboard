@@ -1,4 +1,3 @@
-// src/components/RecentCustomers/RecentCustomers.jsx
 import styles from "./RecentCustomers.module.css";
 
 function RecentCustomers({ customers = [] }) {

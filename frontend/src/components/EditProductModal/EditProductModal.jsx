@@ -1,7 +1,5 @@
-// src/components/EditProductModal/EditProductModal.jsx
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-// CSS'i bir sonraki adımda yazacağız
 import styles from "./EditProductModal.module.css";
 
 function EditProductModal({ isOpen, product, onClose, onSave }) {
@@ -38,7 +36,7 @@ function EditProductModal({ isOpen, product, onClose, onSave }) {
   }
 
   const onSubmit = (formData) => {
-    // Ürünün id'sini de ekleyelim ki üst komponent backend'e gönderirken kullansın
+    
     const payload = {
       ...formData,
       id: product._id || product.id,
@@ -47,7 +45,7 @@ function EditProductModal({ isOpen, product, onClose, onSave }) {
   };
 
   const handleBackdropClick = (e) => {
-    // Sadece arka plana tıklanınca kapanması için
+    
     if (e.target === e.currentTarget) {
       onClose();
     }

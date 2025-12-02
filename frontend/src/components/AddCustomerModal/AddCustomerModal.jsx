@@ -46,7 +46,7 @@ const AddCustomerModal = ({ isOpen, onClose, onCustomerAdded }) => {
 
       onClose();
     } catch (error) {
-       console.error("Create customer error:", error); // 🔴 BUNU EKLEDİK
+       console.error("Create customer error:", error); 
       const message =
         error?.response?.data?.message ||
         "Müşteri eklenirken bir hata oluştu. Lütfen tekrar deneyin.";

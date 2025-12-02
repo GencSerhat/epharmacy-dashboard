@@ -1,4 +1,3 @@
-// src/components/DashboardStatistics/DashboardStatistics.jsx
 import styles from "./DashboardStatistics.module.css";
 
 function DashboardStatistics({

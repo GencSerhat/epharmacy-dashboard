@@ -1,4 +1,4 @@
-// src/components/AddSupplierModal/AddSupplierModal.jsx
+
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";

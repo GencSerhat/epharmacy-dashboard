@@ -4,7 +4,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import styles from "./AddProductModal.module.css";
 
-// Figma'daki kategoriler
+
 const CATEGORIES = [
   "Medicine",
   "Head",

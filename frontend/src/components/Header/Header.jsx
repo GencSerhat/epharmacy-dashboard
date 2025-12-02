@@ -5,7 +5,7 @@ function Header() {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        //İleride istersen burada backend'e /Logout isteği de atarız
+  
         localStorage.removeItem("accessToken");
         navigate("/login");
     };
