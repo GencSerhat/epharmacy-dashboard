@@ -3,7 +3,7 @@ import LoginPage from "./pages/LoginPage/LoginPage.jsx";
 import DashboardPage from "./pages/DashboardPage/DashboardPage.jsx";
 import SharedLayout from "./layouts/SharedLayout/SharedLayout.jsx";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute.jsx";
-import OrdersPage from "./pages/OrdersPage/OrdersPage.JSX";
+import OrdersPage from "./pages/OrdersPage/OrdersPage.jsx";
 import ProductsPage from "./pages/ProductsPage/ProductsPage.jsx";
 import SuppliersPage from "./pages/SuppliersPage/SuppliersPage.jsx";
 import CustomersPage from "./pages/CustomersPage/CustomersPage.jsx";
