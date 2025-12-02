@@ -15,7 +15,7 @@ const app = express();
 const allowedOrigins = [
   "http://localhost:5173", 
   "http://localhost:5000", 
-  "https://SENIN-UYGULAMAN.vercel.app", // 🔴 BURAYI kendi Vercel domaininle değiştir
+ "https://epharmacy-dashboard-jet.vercel.app/login",
 ];
 
 
