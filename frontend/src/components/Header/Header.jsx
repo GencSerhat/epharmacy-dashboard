@@ -1,7 +1,20 @@
 import {Link, useNavigate} from "react-router-dom";
 import styles from "./Header.module.css";
+import { useState,useEffect } from "react";
 
 function Header() {
+
+      const [userEmail, setUserEmail] = useState("");
+
+  useEffect(() => {
+    const emailFromStorage = localStorage.getItem("userEmail");
+    if (emailFromStorage) {
+      setUserEmail(emailFromStorage);
+    }
+  }, []);
+
+
+
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -20,7 +33,7 @@ function Header() {
                 <div className={styles.Breadcrumbs}>
                     <Link to="/dashboard" className={styles.BreadcrumbLink}>Dashboard</Link>
                     <span className={styles.BreadcrumbSeparator}>|</span>
-                    <span className={styles.BreadcrumbEmail}>vendor@gmail.com</span>
+                    <span className={styles.BreadcrumbEmail}>{userEmail || "vendor@gmail.com"}</span>
 
                 </div>
 

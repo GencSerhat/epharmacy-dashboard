@@ -18,6 +18,10 @@ function RegisterPage() {
         localStorage.setItem("accessToken", data.token);
       }
 
+          // karşılama
+    if (data?.user?.email) {
+      localStorage.setItem("userEmail", data.user.email);
+    }
       // Başarılıysa direkt dashboard'a
       navigate("/dashboard");
     } catch (error) {

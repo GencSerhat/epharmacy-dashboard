@@ -19,6 +19,10 @@ function LoginPage() {
         localStorage.setItem("accessToken", data.token);
       }
 
+          // karşılama
+    if (data?.user?.email) {
+      localStorage.setItem("userEmail", data.user.email);
+    }
  
       navigate("/dashboard");
     } catch (error) {
