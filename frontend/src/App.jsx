@@ -7,6 +7,7 @@ import OrdersPage from "./pages/OrdersPage/OrdersPage.jsx";
 import ProductsPage from "./pages/ProductsPage/ProductsPage.jsx";
 import SuppliersPage from "./pages/SuppliersPage/SuppliersPage.jsx";
 import CustomersPage from "./pages/CustomersPage/CustomersPage.jsx";
+import RegisterPage from "./pages/RegisterPage/RegisterPage.jsx";
 function App() {
   return (
     <Routes>
@@ -15,6 +16,7 @@ function App() {
 
  
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
 
     
       <Route
