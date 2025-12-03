@@ -1,7 +1,7 @@
 import axios from "axios";
 //backend bağlantı
 const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
-console.log("🔗 API BASE_URL:", BASE_URL);   // ⬅⬅ BUNU EKLE
+console.log("🔗 API BASE_URL:", BASE_URL);   // kontrol
 const api = axios.create({
   baseURL: BASE_URL,
 });
