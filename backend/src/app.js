@@ -15,7 +15,7 @@ const app = express();
 const allowedOrigins = [
   "http://localhost:5173", 
   "http://localhost:5000", 
- "https://epharmacy-dashboard-three.vercel.app",
+ "https://epharmacy-dashboard1.vercel.app",
 ];
 
 
